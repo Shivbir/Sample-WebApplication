@@ -82,7 +82,7 @@ resource "aws_launch_configuration" "web" {
               #!/bin/bash
               yum install httpd -y
               service httpd start
-              curl "Welcome to Apache - Shiv Test" > /var/www/html/index.html
+              echo "Welcome to Apache - Shiv Test" > /var/www/html/index.html
               EOF
 
   lifecycle {
