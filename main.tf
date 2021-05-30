@@ -80,10 +80,11 @@ resource "aws_launch_configuration" "web" {
 
  user_data = <<-EOF
               #!/bin/bash
-              echo "Hello, World" > index.html
-              nohup busybox httpd -f -p 8080 &
+              yum install httpd -y
+              service httpd start
+              curl "Welcome to Apache - Shiv Test" > /var/www/html/index.html
               EOF
-              
+
   lifecycle {
     create_before_destroy = true
   }
