@@ -79,9 +79,8 @@ resource "aws_launch_configuration" "web" {
   associate_public_ip_address = true
 
   user_data = < /usr/share/nginx/html/index.html
-chkconfig nginx on
-service nginx start
-  USER_DATA
+     chkconfig nginx on
+     service nginx start
 
   lifecycle {
     create_before_destroy = true
