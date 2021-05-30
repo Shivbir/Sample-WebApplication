@@ -78,11 +78,12 @@ resource "aws_launch_configuration" "web" {
   security_groups = [ aws_security_group.allow_http.id ]
   associate_public_ip_address = true
 
-  user_data = < /usr/share/nginx/html/index.html
-     {
-     chkconfig nginx on
-     service nginx start
-}
+ user_data = <<-EOF
+              #!/bin/bash
+              echo "Hello, World" > index.html
+              nohup busybox httpd -f -p 8080 &
+              EOF
+              
   lifecycle {
     create_before_destroy = true
   }
