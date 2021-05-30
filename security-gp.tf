@@ -20,3 +20,4 @@ resource "aws_security_group" "allow_http" {
   tags = {
     Name = "Allow HTTP Security Group"
   }
+  }
