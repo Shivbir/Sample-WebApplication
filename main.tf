@@ -80,9 +80,10 @@ resource "aws_launch_configuration" "web" {
 
  user_data = <<-EOF
               #!/bin/bash
-              yum install httpd -y
+              yum install httpd git -y
               service httpd start
-              echo "Welcome to Apache - Shiv Test" > /var/www/html/index.html
+              git clone https://github.com/Shivbir/project-html-website.git
+              cp -r ./project-html-website/* /var/www/html/
               EOF
 
   lifecycle {
