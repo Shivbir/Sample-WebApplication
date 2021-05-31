@@ -1,0 +1,11 @@
+#!/bin/bash
+yum install httpd git -y
+amazon-linux-extras install tomcat9 -y
+amazon-linux-extras enable tomcat
+yum install tomcat-webapps tomcat-admin-webapps -y
+systemctl start tomcat
+git clone https://github.com/Shivbir/Sample-WebApplication.git
+cp -r ./Sample-WebApplication/demo-0.0.1-SNAPSHOT.war /usr/share/tomcat/webapps/demo.war
+systemctl restart tomcat
+
+

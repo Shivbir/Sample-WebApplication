@@ -80,11 +80,14 @@ resource "aws_launch_configuration" "web" {
 
  user_data = <<-EOF
               #!/bin/bash
-              yum install httpd git -y
-              service httpd start
-              git clone https://github.com/Shivbir/project-html-website.git
-              cp -r ./project-html-website/* /var/www/html/
-              EOF
+             yum install httpd git -y
+            amazon-linux-extras install tomcat9 -y
+            amazon-linux-extras enable tomcat
+            yum install tomcat-webapps tomcat-admin-webapps -y
+            systemctl start tomcat
+            git clone https://github.com/Shivbir/Sample-WebApplication.git
+            cp -r ./Sample-WebApplication/demo-0.0.1-SNAPSHOT.war /usr/share/tomcat/webapps/demo.war
+            systemctl restart tomcat
 
   lifecycle {
     create_before_destroy = true
