@@ -137,7 +137,7 @@ resource "aws_elb" "web_elb" {
     unhealthy_threshold = 2
     timeout = 3
     interval = 30
-    target = "TCP:8080/"
+    target = "HTTP:8080/"
   }
 
   listener {
