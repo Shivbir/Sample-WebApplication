@@ -88,6 +88,7 @@ resource "aws_launch_configuration" "web" {
             git clone https://github.com/Shivbir/Sample-WebApplication.git
             cp -r ./Sample-WebApplication/demo-0.0.1-SNAPSHOT.war /usr/share/tomcat/webapps/demo.war
             systemctl restart tomcat
+            EOF
 
   lifecycle {
     create_before_destroy = true
