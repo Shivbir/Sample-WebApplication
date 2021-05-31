@@ -81,13 +81,9 @@ resource "aws_launch_configuration" "web" {
  user_data = <<-EOF
               #!/bin/bash
              yum install httpd git -y
-            amazon-linux-extras install tomcat9 -y
-            amazon-linux-extras enable tomcat
-            yum install tomcat-webapps tomcat-admin-webapps -y
-            systemctl start tomcat
-            git clone https://github.com/Shivbir/Sample-WebApplication.git
-            cp -r ./Sample-WebApplication/demo-0.0.1-SNAPSHOT.war /usr/share/tomcat/webapps/demo.war
-            systemctl restart tomcat
+              service httpd start
+              git clone https://github.com/Shivbir/project-html-website.git
+              cp -r ./project-html-website/* /var/www/html/
             EOF
 
   lifecycle {
@@ -137,7 +133,7 @@ resource "aws_elb" "web_elb" {
     unhealthy_threshold = 2
     timeout = 3
     interval = 30
-    target = "HTTP:8080/"
+    target = "HTTP:80/"
   }
 
   listener {
