@@ -112,7 +112,7 @@ resource "aws_security_group" "elb_http" {
   }
 }
 
-resource "aws_elb" "web_elb" {
+resource "aws_elb" "web_elb_apache" {
   name = "web-elb"
   security_groups = [
     aws_security_group.elb_http.id
@@ -150,7 +150,7 @@ resource "aws_autoscaling_group" "web" {
   
   health_check_type    = "ELB"
   load_balancers = [
-    aws_elb.web_elb.id
+    aws_elb.web_elb_apache.id
   ]
 
   launch_configuration = aws_launch_configuration.web.name
