@@ -113,7 +113,7 @@ resource "aws_security_group" "elb_http" {
 }
 
 resource "aws_elb" "web_elb_apache" {
-  name = "web_elb_apache"
+  name = "web-elb-apache"
   security_groups = [
     aws_security_group.elb_http.id
   ]
