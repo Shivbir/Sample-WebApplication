@@ -113,7 +113,7 @@ resource "aws_security_group" "elb_http" {
 }
 
 resource "aws_elb" "web_elb_apache" {
-  name = "web-elb"
+  name = "web_elb_apache"
   security_groups = [
     aws_security_group.elb_http.id
   ]
@@ -146,7 +146,7 @@ resource "aws_autoscaling_group" "web" {
 
   min_size             = 1
   desired_capacity     = 2
-  max_size             = 4
+  max_size             = 3
   
   health_check_type    = "ELB"
   load_balancers = [
@@ -177,7 +177,7 @@ resource "aws_autoscaling_group" "web" {
 
   tag {
     key                 = "Name"
-    value               = "web"
+    value               = "apache"
     propagate_at_launch = true
   }
 
