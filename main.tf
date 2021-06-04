@@ -108,7 +108,7 @@ resource "aws_security_group" "elb_http" {
   }
 
   tags = {
-    Name = "Allow HTTP through ELB Security Group"
+    Name = "Allow HTTP through ELB Security Group for static website"
   }
 }
 
@@ -177,7 +177,7 @@ resource "aws_autoscaling_group" "web" {
 
   tag {
     key                 = "Name"
-    value               = "apache"
+    value               = "apache-static"
     propagate_at_launch = true
   }
 
