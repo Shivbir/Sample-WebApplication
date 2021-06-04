@@ -146,7 +146,7 @@ resource "aws_autoscaling_group" "web" {
 
   min_size             = 1
   desired_capacity     = 2
-  max_size             = 3
+  max_size             = 5
   
   health_check_type    = "ELB"
   load_balancers = [
